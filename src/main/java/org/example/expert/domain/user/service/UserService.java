@@ -1,6 +1,5 @@
 package org.example.expert.domain.user.service;
 
-import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.example.expert.config.PasswordEncoder;
 import org.example.expert.domain.common.exception.InvalidRequestException;
@@ -10,6 +9,7 @@ import org.example.expert.domain.user.entity.User;
 import org.example.expert.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +26,9 @@ public class UserService {
 
 
     @Transactional
-    public void changePassword(long userId, UserChangePasswordRequest userChangePasswordRequest) {
+    public void changePassword(
+            long userId,
+            @Validated UserChangePasswordRequest userChangePasswordRequest) {
 
 //        if (userChangePasswordRequest.getNewPassword().length() < 8 ||
 //                !userChangePasswordRequest.getNewPassword().matches(".*\\d.*") ||
