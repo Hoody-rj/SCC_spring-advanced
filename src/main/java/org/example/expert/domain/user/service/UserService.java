@@ -1,5 +1,6 @@
 package org.example.expert.domain.user.service;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.example.expert.config.PasswordEncoder;
 import org.example.expert.domain.common.exception.InvalidRequestException;
@@ -23,13 +24,15 @@ public class UserService {
         return new UserResponse(user.getId(), user.getEmail());
     }
 
+
     @Transactional
     public void changePassword(long userId, UserChangePasswordRequest userChangePasswordRequest) {
-        if (userChangePasswordRequest.getNewPassword().length() < 8 ||
-                !userChangePasswordRequest.getNewPassword().matches(".*\\d.*") ||
-                !userChangePasswordRequest.getNewPassword().matches(".*[A-Z].*")) {
-            throw new InvalidRequestException("새 비밀번호는 8자 이상이어야 하고, 숫자와 대문자를 포함해야 합니다.");
-        }
+
+//        if (userChangePasswordRequest.getNewPassword().length() < 8 ||
+//                !userChangePasswordRequest.getNewPassword().matches(".*\\d.*") ||
+//                !userChangePasswordRequest.getNewPassword().matches(".*[A-Z].*")) {
+//            throw new InvalidRequestException("새 비밀번호는 8자 이상이어야 하고, 숫자와 대문자를 포함해야 합니다.");
+//        }
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new InvalidRequestException("User not found"));
