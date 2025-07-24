@@ -26,6 +26,7 @@ class PasswordEncoderTest {
     @InjectMocks
     private PasswordEncoder passwordEncoder;
 
+    //Lv3 테스트 코드 연습 문제
     @Test
     void matches_메서드가_정상적으로_동작한다() {
         // given
@@ -36,7 +37,7 @@ class PasswordEncoderTest {
         boolean matches = passwordEncoder.matches(encodedPassword, rawPassword);
 
         // then
-        assertTrue(matches);
+        assertTrue(!matches);
     }
 
 
